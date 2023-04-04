@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AI to NFT</title>
+  <script>
+    window.onload = () => {
+      const form = document.getElementById("introduce-prompt-form");
+    
+      form.addEventListener("submit", event => {
+        event.preventDefault();
+
+        const url = "http://localhost:8000/generate-image";
+
+        const data = { "input": document.getElementById("texto").value };
+
+        const options = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        };
+
+        fetch(url, options)
+          .then((response) => response.json())
+          .then((html) => {
+            console.log(html['img_url']);
+            let imgUrl = html['img_url'];
+            const img = document.createElement("img");
+            img.src = imgUrl;
+            const container = document.getElementById("new-container");
+            container.appendChild(img);
+          })
+          .catch(error => console.error(error));
+      });
+    };
+    
+  </script>
+  </head>
+  <body>
+    <div style="text-align: center;">
+      <h1>AI to NFT</h1>
+      <form id="introduce-prompt-form">
+        <label for="texto">Introduce indications for AI:</label><br>
+        <input id="texto" name="texto"><br><br>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    <div id="new-container"></div>
+  </body>
+</html>
