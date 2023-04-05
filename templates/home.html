@@ -13,6 +13,8 @@
 
         const data = { "input": document.getElementById("texto").value };
 
+        console.log(data)
+
         const options = {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -20,13 +22,17 @@
         };
 
         fetch(url, options)
-          .then((response) => response.json())
-          .then((html) => {
-            console.log(html['img_url']);
-            let imgUrl = html['img_url'];
+          .then(response => {
+            return response.json();
+            console.log(response);
+          })
+          .then(html => {
+            console.log(html);
+            let imgUrl = html.img_url;
             const img = document.createElement("img");
             img.src = imgUrl;
             const container = document.getElementById("new-container");
+            container.innerHTML = ""
             container.appendChild(img);
           })
           .catch(error => console.error(error));
