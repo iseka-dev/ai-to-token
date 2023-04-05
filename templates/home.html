@@ -23,22 +23,17 @@
 
         fetch(url, options)
           .then(response => {
-            return response.json();
-            console.log(response);
+            return response.text();
           })
           .then(html => {
             console.log(html);
-            let imgUrl = html.img_url;
-            const img = document.createElement("img");
-            img.src = imgUrl;
             const container = document.getElementById("new-container");
-            container.innerHTML = ""
-            container.appendChild(img);
+            container.innerHTML = "";
+            container.innerHTML = html;
           })
           .catch(error => console.error(error));
       });
     };
-    
   </script>
   </head>
   <body>
