@@ -1,0 +1,42 @@
+@font-face {
+    font-family: acidFont;
+    src:url(fonts/Acid2-oxD4.ttf);
+}
+
+@font-face {
+    font-family: slimyFont;
+    src:url(fonts/AbFubu-DJ6E.ttf);
+}
+
+@font-face {
+    font-family: aileenationFont;
+    src:url(fonts/Aileenation-69lo.ttf);
+}
+
+@font-face {
+    font-family: builderFont;
+    src:url(fonts/Builder-ZWa8.ttf);
+}
+
+@font-face {
+    font-family: chemicalFont;
+    size-adjust: 200%;
+    src:url(fonts/ChemicalGus-WJJ4.ttf);
+}
+
+@font-face {
+    font-family: dottyFont;
+    size-adjust: 200%;
+    src:url(fonts/DottyRegular-vZOy.ttf);
+
+}
+
+@font-face {
+    font-family: handwritingFont;
+    src:url(fonts/FreestyleHandwritingRegular-oomq.ttf);
+}
+
+@font-face {
+    font-family: greenScreenFont;
+    src:url(fonts/GreenScreen-OAj3.ttf);
+}

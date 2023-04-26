@@ -27,43 +27,44 @@
 //provider.on('error', (error) => {
 //  // Failed to connect to MetaMask, fallback logic.
 //});
+//
+//
+// /**********************************************************/
+// /* Handle chain (network) and chainChanged (per EIP-1193) */
+// /**********************************************************/
+// 
+// const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+// 
+// console.log(chainId, "*********************")
+// 
+// window.ethereum.on('chainChanged', handleChainChanged);
+// 
+// function handleChainChanged(chainId) {
+//   window.location.reload();
+// }
+//
+///***********************************************************/
+///* Handle user accounts and accountsChanged (per EIP-1193) */
+///***********************************************************/
+//
+//let currentAccount = null;
+//window.ethereum.request({ method: 'eth_accounts' })
+//  .then(handleAccountsChanged)
+//  .catch((err) => {
+//    console.error(err);
+//  });
+//
+//window.ethereum.on('accountsChanged', handleAccountsChanged);
+//
+//function handleAccountsChanged(accounts) {
+//  if (accounts.length === 0) {
+//    console.log('Please connect to MetaMask.');
+//  } else if (accounts[0] !== currentAccount) {
+//    currentAccount = accounts[0];
+//    showAccount.innerHTML = currentAccount;
+//  }
+//}
 
-
- /**********************************************************/
- /* Handle chain (network) and chainChanged (per EIP-1193) */
- /**********************************************************/
- 
- const chainId = await window.ethereum.request({ method: 'eth_chainId' });
- 
- console.log(chainId, "*********************")
- 
- window.ethereum.on('chainChanged', handleChainChanged);
- 
- function handleChainChanged(chainId) {
-   window.location.reload();
- }
-
-/***********************************************************/
-/* Handle user accounts and accountsChanged (per EIP-1193) */
-/***********************************************************/
-
-let currentAccount = null;
-window.ethereum.request({ method: 'eth_accounts' })
-  .then(handleAccountsChanged)
-  .catch((err) => {
-    console.error(err);
-  });
-
-window.ethereum.on('accountsChanged', handleAccountsChanged);
-
-function handleAccountsChanged(accounts) {
-  if (accounts.length === 0) {
-    console.log('Please connect to MetaMask.');
-  } else if (accounts[0] !== currentAccount) {
-    currentAccount = accounts[0];
-    showAccount.innerHTML = currentAccount;
-  }
-}
 
 /*********************************************/
 /* Access the user's accounts (per EIP-1102) */
