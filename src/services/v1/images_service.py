@@ -5,6 +5,7 @@ import requests
 from fastapi import Request
 from fastapi.templating import Jinja2Templates
 
+from src.core.logger import log
 from src.settings import settings
 
 
@@ -28,11 +29,14 @@ class ImageGeneratorService:
     headers = {
             "Content-Type": "application/json",
             "Authorization": f"Bearer {settings.OPENAI_API_KEY}"
-        }
+    }
 
-    async def generate_image(self, request: Request):
+    async def generate_image(
+        self, request: Request
+    ):
         # Get the user's input
         json_request = await request.json()
+        log.debug("****************", type(json_request))
         input = json_request['input']
         data = {
             'prompt': input,
@@ -41,10 +45,9 @@ class ImageGeneratorService:
         }
 
         # Send the request and handle the response
-        response = requests.post(
+        json_response = requests.post(
             url=self.url, headers=self.headers, json=data
-        )
-        json_response = response.json()
+        ).json()
         img_url = json_response['data'][0]['url']
 
         return templates.TemplateResponse(
