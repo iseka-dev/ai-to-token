@@ -65,6 +65,13 @@
 //  }
 //}
 
+import MetaMaskSDK from '@metamask/sdk';
+
+const MMSDK = new MetaMaskSDK(options);
+
+const ethereum = MMSDK.getProvider(); 
+
+console.log(ethereum)
 
 /*********************************************/
 /* Access the user's accounts (per EIP-1102) */
