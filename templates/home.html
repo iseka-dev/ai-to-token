@@ -1,42 +1,9 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>AI to NFT</title>
-  <script>
-    window.onload = () => {
-      const form = document.getElementById("introduce-prompt-form");
-    
-      form.addEventListener("submit", event => {
-        event.preventDefault();
-
-        const url = "http://localhost:8000/generate-image";
-
-        const data = { "input": document.getElementById("texto").value };
-
-        console.log(data)
-
-        const options = {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data)
-        };
-
-        fetch(url, options)
-          .then(response => {
-            return response.text();
-          })
-          .then(html => {
-            console.log(html);
-            const container = document.getElementById("new-container");
-            container.innerHTML = "";
-            container.innerHTML = html;
-          })
-          .catch(error => console.error(error));
-      });
-    };
-  </script>
-  </head>
+  {% include "header.html" %}
   <body>
+    <!-- Display a connect button and the current account -->
+    {% include "auth.html" %}
     <div style="text-align: center;">
       <h1>AI to NFT</h1>
       <form id="introduce-prompt-form">

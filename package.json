@@ -1,0 +1,7 @@
+{
+  "main": "static/web3js",
+  "dependencies": {
+    "@metamask/detect-provider": "^2.0.0",
+    "@metamask/sdk": "^0.2.0"
+  }
+}
