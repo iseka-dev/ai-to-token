@@ -2,17 +2,14 @@ from fastapi import APIRouter
 from fastapi import HTTPException
 from fastapi import Request
 from fastapi import status
-from fastapi.templating import Jinja2Templates
 
 from src.core.logger import log
-
+from src.core.utils import templates
 
 home_routes = APIRouter(
     prefix="",
     tags=["home"]
 )
-
-templates = Jinja2Templates(directory="templates")
 
 
 @home_routes.get("/")

@@ -20,28 +20,28 @@
 
 // #####################################
 
-import createMetaMaskProvider from ''
+// import createMetaMaskProvider from ''
 
-const provider = createMetaMaskProvider();
+//const provider = createMetaMaskProvider();
+//
+//provider.on('error', (error) => {
+//  // Failed to connect to MetaMask, fallback logic.
+//});
 
-provider.on('error', (error) => {
-  // Failed to connect to MetaMask, fallback logic.
-});
 
-
-// /**********************************************************/
-// /* Handle chain (network) and chainChanged (per EIP-1193) */
-// /**********************************************************/
-// 
-// const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-// 
-// console.log(chainId, "*********************")
-// 
-// window.ethereum.on('chainChanged', handleChainChanged);
-// 
-// function handleChainChanged(chainId) {
-//   window.location.reload();
-// }
+ /**********************************************************/
+ /* Handle chain (network) and chainChanged (per EIP-1193) */
+ /**********************************************************/
+ 
+ const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+ 
+ console.log(chainId, "*********************")
+ 
+ window.ethereum.on('chainChanged', handleChainChanged);
+ 
+ function handleChainChanged(chainId) {
+   window.location.reload();
+ }
 
 /***********************************************************/
 /* Handle user accounts and accountsChanged (per EIP-1193) */

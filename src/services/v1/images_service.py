@@ -3,13 +3,10 @@ from abc import abstractmethod
 import requests
 
 from fastapi import Request
-from fastapi.templating import Jinja2Templates
 
-from src.core.logger import log
+# from src.core.logger import log
 from src.settings import settings
-
-
-templates = Jinja2Templates(directory="templates")
+from src.core.utils import templates
 
 
 class ImageGeneratorInterface(ABC):
@@ -36,7 +33,7 @@ class ImageGeneratorService:
     ):
         # Get the user's input
         json_request = await request.json()
-        log.debug("****************", type(json_request))
+        # log.debug("****************", type(json_request))
         input = json_request['input']
         data = {
             'prompt': input,
