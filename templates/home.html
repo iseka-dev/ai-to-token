@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  {% include "header.html" %}
+  <body>
+    <!-- Display a connect button and the current account -->
+    {% include "auth.html" %}
+    <div style="text-align: center;">
+      <h1>AI to NFT</h1>
+      <form id="introduce-prompt-form">
+        <label for="texto">Introduce indications for AI:</label><br>
+        <input id="texto" name="texto"><br><br>
+        <input type="submit" value="Create Image">
+      </form>
+    </div>
+    <div id="new-container"></div>
+  </body>
+</html>
