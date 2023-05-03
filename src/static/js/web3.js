@@ -43,35 +43,24 @@
 //   window.location.reload();
 // }
 //
-///***********************************************************/
-///* Handle user accounts and accountsChanged (per EIP-1193) */
-///***********************************************************/
-//
-//let currentAccount = null;
-//window.ethereum.request({ method: 'eth_accounts' })
-//  .then(handleAccountsChanged)
-//  .catch((err) => {
-//    console.error(err);
-//  });
-//
-//window.ethereum.on('accountsChanged', handleAccountsChanged);
-//
-//function handleAccountsChanged(accounts) {
-//  if (accounts.length === 0) {
-//    console.log('Please connect to MetaMask.');
-//  } else if (accounts[0] !== currentAccount) {
-//    currentAccount = accounts[0];
-//    showAccount.innerHTML = currentAccount;
-//  }
-//}
 
-import MetaMaskSDK from '@metamask/sdk';
 
-const MMSDK = new MetaMaskSDK(options);
+//import MetaMaskSDK from '@metamask/sdk';
 
-const ethereum = MMSDK.getProvider(); 
+// const MMSDK = new MetaMaskSDK();
 
-console.log(ethereum)
+// const ethereum = MMSDK.getProvider(); 
+
+// console.log(ethereum)
+
+
+// import MetaMaskOnboarding from '../../../node_modules/@metamask/onboarding';
+// 
+// if (MetaMaskOnboarding.isMetaMaskInstalled()) {
+//   console.log("**************")
+// } else {
+//   console.log("....................")
+// }
 
 /*********************************************/
 /* Access the user's accounts (per EIP-1102) */
@@ -95,4 +84,26 @@ async function getAccount() {
     });
   const account = accounts[0];
   showAccount.innerHTML = account;
+}
+
+///***********************************************************/
+///* Handle user accounts and accountsChanged (per EIP-1193) */
+///***********************************************************/
+
+let currentAccount = null;
+window.ethereum.request({ method: 'eth_accounts' })
+  .then(handleAccountsChanged)
+  .catch((err) => {
+    console.error(err);
+  });
+
+window.ethereum.on('accountsChanged', handleAccountsChanged);
+
+function handleAccountsChanged(accounts) {
+  if (accounts.length === 0) {
+    console.log('Please connect to MetaMask.');
+  } else if (accounts[0] !== currentAccount) {
+    currentAccount = accounts[0];
+    showAccount.innerHTML = currentAccount;
+  }
 }

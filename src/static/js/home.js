@@ -4,7 +4,7 @@ window.onload = () => {
     form.addEventListener("submit", event => {
         event.preventDefault();
 
-        const url = "http://localhost:8000/generate-img";
+        const url = "http://localhost:8000/v1/generate-img/";
 
         const data = { "input": document.getElementById("texto").value };
 
@@ -16,8 +16,7 @@ window.onload = () => {
         body: JSON.stringify(data)
         };
 
-        fetch(url, options)
-        .then(response => {
+        fetch(url, options).then(response => {
             return response.text();
         })
         .then(html => {

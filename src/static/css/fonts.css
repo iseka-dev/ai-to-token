@@ -1,4 +1,9 @@
 @font-face {
+    font-family: handwritingFont;
+    src:url(fonts/handwriting.ttf);
+}
+
+@font-face {
     font-family: acidFont;
     src:url(fonts/Acid2-oxD4.ttf);
 }
@@ -32,11 +37,11 @@
 }
 
 @font-face {
-    font-family: handwritingFont;
-    src:url(fonts/FreestyleHandwritingRegular-oomq.ttf);
+    font-family: startFont;
+    src:url(fonts/prstartk.ttf);
 }
 
 @font-face {
-    font-family: greenScreenFont;
-    src:url(fonts/GreenScreen-OAj3.ttf);
+    font-family: start2Font;
+    src:url(fonts/prstartk2.ttf);
 }

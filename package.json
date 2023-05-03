@@ -1,7 +1,23 @@
 {
-  "main": "static/web3js",
+  "main": "",
   "dependencies": {
     "@metamask/detect-provider": "^2.0.0",
     "@metamask/sdk": "^0.2.0"
-  }
+  },
+  "name": "aitotoken",
+  "description": "## Overview",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iseka-dev/aiToToken.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iseka-dev/aiToToken/issues"
+  },
+  "homepage": "https://github.com/iseka-dev/aiToToken#readme"
 }
