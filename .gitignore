@@ -257,8 +257,3 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
-
-# JS-RELATED
-package-lock.json
-package-lock.json
-node_modules
