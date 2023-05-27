@@ -1,0 +1,40 @@
+<div>
+    <div>
+        <button id="onboardButton">Install metamask</button>
+    </div>
+    <div style="margin-top: 2vw;">
+        <button class="enableEthereumButton">Enable Ethereum</button>
+        <h2 style="font-family: acidFont">Account: <span class="showAccount"></span></h2>
+    </div>
+</div>
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const onboarding = new MetaMaskOnboarding();
+        const onboardButton = document.getElementById("onboardButton");
+        let accounts;
+        console.log(accounts)
+        const updateButton = () => {
+            console.log("**************")
+            if (!MetaMaskOnboarding.isMetaMaskInstalled()) {
+                onboardButton.innerText = "Click here to install MetaMask!";
+                onboardButton.onclick = () => {
+                    onboardButton.innerText = "Onboarding in progress";
+                    onboardButton.disabled = true;
+                    onboarding.startOnboarding();
+                };
+            } else if (accounts && accounts.length > 0) {
+                onboardButton.innerText = "Connected";
+                onboardButton.disabled = true;
+                onboarding.stopOnboarding();
+            } else {
+                onboardButton.innerText = "Connect";
+                onboardButton.onclick = async () => {
+                    await window.ethereum.request({
+                        method: "eth_requestAccounts",
+                    });
+                };
+            }
+        };
+        updateButton();
+    });
+</script>

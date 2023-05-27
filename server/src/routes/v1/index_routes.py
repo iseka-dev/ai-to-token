@@ -6,16 +6,16 @@ from fastapi import status
 from src.core.logger import log
 from src.core.utils import templates
 
-home_routes = APIRouter(
+index_routes = APIRouter(
     prefix="",
-    tags=["home"]
+    tags=["aitonft"]
 )
 
 
-@home_routes.get("/")
-async def home_html(request: Request):
+@index_routes.get("/")
+async def index_html(request: Request):
     try:
-        return templates.TemplateResponse("home.html", {"request": request})
+        return templates.TemplateResponse("index.html", {"request": request})
     except Exception as e:
         log.error(f"Route Error: {e}")
     raise HTTPException(

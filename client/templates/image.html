@@ -1,0 +1,33 @@
+<div>
+    <img id="nft-image" src="{{ img_url }}"/>
+    <h3 id="make-nft-title">Do you want to make a NFT with your image?</h3>
+    <form id="make-nft" class="right-aligned">
+        <label for="nft-name" id="nft-name-label">Choose a name for your NFT:</label><br>
+        <input id="nft-name" name="nft-name"><br><br>
+        <input type="button" id="nft-button" value="Create NFT">
+    </form>
+</div>
+<script>
+    const ethereum = window.ethereum;
+    const smartContractAddress = "0xd9145CCE52D386f254917e481eB44e9943F39138"
+    console.log(smartContractAddress)
+    const nftButton = document.getElementById("nft-button");
+    console.log(nftButton)
+
+    nftButton.addEventListener("click", () => {
+        console.log(nftButton)
+        mintNft();
+    });
+
+    async function mintNft() {
+        console.log(accounts[0])
+        const accounts = await ethereum.request({
+            method: "eth_requestAccounts",
+        });
+        console.log(accounts[0])
+        const signer = ethereum.getSigner(accounts[0])
+        console.log(signer)
+        const contract = new ethers.contract(smartContractAddress, ethereum, signer)
+        console.log(contract)
+    }
+</script>

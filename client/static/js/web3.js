@@ -1,3 +1,5 @@
+// TODO:
+
 /*****************************************/
 /* Detect the MetaMask Ethereum provider */
 /*****************************************/
@@ -18,6 +20,7 @@
 //  }
 //}
 
+// TODO:
 // /**********************************************************/
 // /* Handle chain (network) and chainChanged (per EIP-1193) */
 // /**********************************************************/
@@ -33,26 +36,6 @@
 // }
 //
 
-
-//import MetaMaskSDK from '@metamask/sdk';
-
-// const MMSDK = new MetaMaskSDK();
-
-// const ethereum = MMSDK.getProvider(); 
-
-// console.log(ethereum)
-
-
-
-// import MetaMaskOnboarding from '@metamask/onboarding';
-
-// const MetaMaskOnboarding = require('@metamask/onboarding')
-// 
-// if (MetaMaskOnboarding.isMetaMaskInstalled()) {
-//   console.log("**************")
-// } else {
-//   console.log("....................")
-// }
 
 /*********************************************/
 /* Access the user's accounts (per EIP-1102) */
@@ -99,3 +82,23 @@ function handleAccountsChanged(accounts) {
     showAccount.innerHTML = currentAccount;
   }
 }
+
+
+///***********************************************************/
+///* Mint */
+///***********************************************************/
+
+// const ethers = require('ethers');
+
+
+// // const smartContractAddress = "0xd9145CCE52D386f254917e481eB44e9943F39138";
+
+//let params = [
+//  {
+//    from: currentAccount,
+//    to: smartContractAddress,
+//    data: []
+//  }
+//]
+
+
