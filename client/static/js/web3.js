@@ -20,25 +20,11 @@
 //  }
 //}
 
-// TODO:
-/**********************************************************/
-/* Handle chain (network) and chainChanged (per EIP-1193) */
-/**********************************************************/
-
-const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-
-console.log(chainId, "*********************")
-
-window.ethereum.on('chainChanged', handleChainChanged);
-
-function handleChainChanged(chainId) {
-  window.location.reload();
-}
-
 
 /*********************************************/
 /* Access the user's accounts (per EIP-1102) */
 /*********************************************/
+
 
 const ethereumButton = document.querySelector('.enableEthereumButton');
 const showAccount = document.querySelector('.showAccount');
@@ -57,17 +43,16 @@ async function getAccount() {
       }
     });
   const account = accounts[0];
-
-  if (ethereumButton.innerText === "Show Account") {
+  }
+  /*
+  if (showAccount.innerHTML === "") {
     showAccount.innerHTML = account;
     ethereumButton.innerText =  "Hide Account";
   } else {
-    showAccount.textContent = ""
-    console.log(showAccount.textContent);
+    showAccount.innerHTML = ""
     ethereumButton.innerText = "Show Account";
   };
-
-}
+} */
 
 ///***********************************************************/
 ///* Handle user accounts and accountsChanged (per EIP-1193) */
@@ -89,6 +74,21 @@ function handleAccountsChanged(accounts) {
     currentAccount = accounts[0];
     showAccount.innerHTML = currentAccount;
   }
+}
+
+
+/**********************************************************/
+/* Handle chain (network) and chainChanged (per EIP-1193) */
+/**********************************************************/
+
+const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+
+console.log(chainId, "*********************")
+
+window.ethereum.on('chainChanged', handleChainChanged);
+
+function handleChainChanged(chainId) {
+  window.location.reload();
 }
 
 

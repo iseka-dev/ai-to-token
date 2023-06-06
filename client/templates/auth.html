@@ -11,6 +11,7 @@
     window.addEventListener("DOMContentLoaded", () => {
         const onboarding = new MetaMaskOnboarding();
         const onboardButton = document.getElementById("onboardButton");
+        const showAccount = document.querySelector('.showAccount');
         let accounts;
         const updateButton = () => {
             if (!MetaMaskOnboarding.isMetaMaskInstalled()) {
@@ -23,6 +24,7 @@
             } else if (accounts && accounts.length > 0) {
                 onboardButton.innerText = "Connected";
                 onboardButton.disabled = true;
+                showAccount.innerHTML = ""
                 onboarding.stopOnboarding();
             } else {
                 onboardButton.innerText = "Connect";
