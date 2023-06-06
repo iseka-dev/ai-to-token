@@ -1,4 +1,4 @@
-// TODO:
+// @ts-checkts
 
 /*****************************************/
 /* Detect the MetaMask Ethereum provider */
@@ -21,20 +21,19 @@
 //}
 
 // TODO:
-// /**********************************************************/
-// /* Handle chain (network) and chainChanged (per EIP-1193) */
-// /**********************************************************/
-// 
-// const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-// 
-// console.log(chainId, "*********************")
-// 
-// window.ethereum.on('chainChanged', handleChainChanged);
-// 
-// function handleChainChanged(chainId) {
-//   window.location.reload();
-// }
-//
+/**********************************************************/
+/* Handle chain (network) and chainChanged (per EIP-1193) */
+/**********************************************************/
+
+const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+
+console.log(chainId, "*********************")
+
+window.ethereum.on('chainChanged', handleChainChanged);
+
+function handleChainChanged(chainId) {
+  window.location.reload();
+}
 
 
 /*********************************************/
@@ -45,7 +44,7 @@ const ethereumButton = document.querySelector('.enableEthereumButton');
 const showAccount = document.querySelector('.showAccount');
 
 ethereumButton.addEventListener('click', () => {
-  getAccount();
+  void getAccount();
 });
 
 async function getAccount() {
@@ -58,7 +57,16 @@ async function getAccount() {
       }
     });
   const account = accounts[0];
-  showAccount.innerHTML = account;
+
+  if (ethereumButton.innerText === "Show Account") {
+    showAccount.innerHTML = account;
+    ethereumButton.innerText =  "Hide Account";
+  } else {
+    showAccount.textContent = ""
+    console.log(showAccount.textContent);
+    ethereumButton.innerText = "Show Account";
+  };
+
 }
 
 ///***********************************************************/

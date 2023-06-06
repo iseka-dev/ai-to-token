@@ -3,8 +3,8 @@
         <button id="onboardButton">Install metamask</button>
     </div>
     <div style="margin-top: 2vw;">
-        <button class="enableEthereumButton">Enable Ethereum</button>
-        <h2 style="font-family: acidFont">Account: <span class="showAccount"></span></h2>
+        <button class="enableEthereumButton">Show Account</button>
+        <h2 style="font-family: acidFont, Helvetica">Account: <span class="showAccount"></span></h2>
     </div>
 </div>
 <script>
@@ -12,9 +12,7 @@
         const onboarding = new MetaMaskOnboarding();
         const onboardButton = document.getElementById("onboardButton");
         let accounts;
-        console.log(accounts)
         const updateButton = () => {
-            console.log("**************")
             if (!MetaMaskOnboarding.isMetaMaskInstalled()) {
                 onboardButton.innerText = "Click here to install MetaMask!";
                 onboardButton.onclick = () => {
@@ -28,13 +26,30 @@
                 onboarding.stopOnboarding();
             } else {
                 onboardButton.innerText = "Connect";
+                onboardButton.disabled = false;
                 onboardButton.onclick = async () => {
-                    await window.ethereum.request({
+                    const acc = await window.ethereum.request({
                         method: "eth_requestAccounts",
+                    }).catch((err) => {
+                        if (err.code === 4001) {
+                            console.log('Please connect to MetaMask.');
+                        } else {
+                            console.error(err);
+                        }
                     });
+                    if (acc && acc.length > 0) {
+                        onboardButton.innerText = "Connected";
+                        onboardButton.disabled = true;
+                    }
                 };
             }
         };
         updateButton();
+        if (MetaMaskOnboarding.isMetaMaskInstalled()) {
+            window.ethereum.on('accountsChanged', (newAccounts) => {
+                accounts = newAccounts;
+                updateButton();
+            });
+        }
     });
 </script>

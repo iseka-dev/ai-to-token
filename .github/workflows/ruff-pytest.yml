@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python ${{ matrix.python-version }} # TODO: ADD OS
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
@@ -33,7 +33,4 @@ jobs:
           ruff --format=github --target-version=py37 .
       - name: Test with pytest
         run: |
-          echo ${{ github.path }}
-          echo ${{ github.workspace }}
-          # pytest
           pytest --suppress-no-test-exit-code --cov=server/src --cov-report term
