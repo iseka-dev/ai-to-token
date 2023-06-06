@@ -1,25 +1,5 @@
 // @ts-checkts
 
-/*****************************************/
-/* Detect the MetaMask Ethereum provider */
-/*****************************************/
-
-//import detectEthereumProvider from '@metamask/detect-provider';
-//
-//const provider = await detectEthereumProvider();
-//
-//if (provider) {
-//  startApp(provider);
-//} else {
-//  console.log('Please install MetaMask!');
-//}
-//
-//function startApp(provider) {
-//  if (provider !== window.ethereum) {
-//    console.error('Do you have multiple wallets installed?');
-//  }
-//}
-
 
 /*********************************************/
 /* Access the user's accounts (per EIP-1102) */
@@ -43,20 +23,14 @@ async function getAccount() {
       }
     });
   const account = accounts[0];
+  showAccount.innerHTML = account;
   }
-  /*
-  if (showAccount.innerHTML === "") {
-    showAccount.innerHTML = account;
-    ethereumButton.innerText =  "Hide Account";
-  } else {
-    showAccount.innerHTML = ""
-    ethereumButton.innerText = "Show Account";
-  };
-} */
+
 
 ///***********************************************************/
 ///* Handle user accounts and accountsChanged (per EIP-1193) */
 ///***********************************************************/
+
 
 let currentAccount = null;
 window.ethereum.request({ method: 'eth_accounts' })
@@ -90,23 +64,3 @@ window.ethereum.on('chainChanged', handleChainChanged);
 function handleChainChanged(chainId) {
   window.location.reload();
 }
-
-
-///***********************************************************/
-///* Mint */
-///***********************************************************/
-
-// const ethers = require('ethers');
-
-
-// // const smartContractAddress = "0xd9145CCE52D386f254917e481eB44e9943F39138";
-
-//let params = [
-//  {
-//    from: currentAccount,
-//    to: smartContractAddress,
-//    data: []
-//  }
-//]
-
-
