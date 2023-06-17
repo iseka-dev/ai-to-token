@@ -22,8 +22,7 @@ async function handleButtonClick() {
         console.log("Provider: ", provider);
         const contractAddress = "0xd9145CCE52D386f254917e481eB44e9943F39138";
         console.log("contract_ address: ", contractAddress );
-        const abi = `[
-        {
+        const abi = `{
             "inputs": [
                 {
                     "internalType": "string",
@@ -46,8 +45,7 @@ async function handleButtonClick() {
             ],
             "stateMutability": "nonpayable",
             "type": "function"
-        }
-        ]`;
+        }`;
 
         const name = "MyMessiNFT";
         const url = "https://example.com/nft-image.png";
