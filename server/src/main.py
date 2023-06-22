@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
-from src.routes.v1.base_routes import router
+from src.routes.base_routes import router
 
 
 app = FastAPI()
