@@ -35,7 +35,7 @@ build-backend = "setuptools.build_meta"
 
 [tool.ruff]
 # Enable pycodestyle (`E`) and Pyflakes (`F`) codes by default.
-select = ["E", "F", "I"]
+select = ["E", "F", "I", "B"]
 ignore = []
 
 # Allow autofix for all enabled rules (when `--fix`) is provided.
@@ -74,7 +74,6 @@ line-length = 79
 # Allow unused variables when underscore-prefixed.
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
-# Assume Python 3.10.
 target-version = "py39"
 
 [tool.ruff.mccabe]
