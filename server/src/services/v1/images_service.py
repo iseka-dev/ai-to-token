@@ -1,22 +1,12 @@
-from abc import ABC
-from abc import abstractmethod
 import requests
 
 from fastapi import Request
 
-from src.core.logger import log
 from src.config import settings
 from src.core.utils import templates
 
 
-class ImageGeneratorInterface(ABC):
-
-    @abstractmethod
-    def get_image(self):
-        pass
-
-
-class ImageGeneratorService(ImageGeneratorInterface):
+class ImageGeneratorService:
     url_open_ai = "https://api.openai.com/v1/images/generations"
     headers = {
             "Content-Type": "application/json",
@@ -28,7 +18,6 @@ class ImageGeneratorService(ImageGeneratorInterface):
     ):
         # Get the user's input
         json_request = await request.json()
-        # log.debug("****************", type(json_request))
         prompt = json_request['input']
         data = {
             'prompt': prompt,
@@ -43,17 +32,9 @@ class ImageGeneratorService(ImageGeneratorInterface):
         img_url = json_response['data'][0]['url']
 
         return templates.TemplateResponse(
-            "image.html", 
+            "image.html",
             {
                 "request": request,
-                "img_url": img_url, 
+                "img_url": img_url,
             }
         )
-
-
-class DallEImageGeneratorService(ImageGeneratorInterface):
-    def get_image(self):
-        """
-        TODO
-        """
-        pass
