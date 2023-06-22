@@ -8,50 +8,79 @@
     </div>
 </div>
 <script>
-    window.addEventListener("DOMContentLoaded", () => {
-        const onboarding = new MetaMaskOnboarding();
-        const onboardButton = document.getElementById("onboardButton");
-        const showAccount = document.querySelector('.showAccount');
-        let accounts;
-        const updateButton = () => {
-            if (!MetaMaskOnboarding.isMetaMaskInstalled()) {
-                onboardButton.innerText = "Click here to install MetaMask!";
-                onboardButton.onclick = () => {
-                    onboardButton.innerText = "Onboarding in progress";
-                    onboardButton.disabled = true;
-                    onboarding.startOnboarding();
-                };
-            } else if (accounts && accounts.length > 0) {
-                onboardButton.innerText = "Connected";
-                onboardButton.disabled = true;
-                showAccount.innerHTML = ""
-                onboarding.stopOnboarding();
-            } else {
-                onboardButton.innerText = "Connect";
-                onboardButton.disabled = false;
-                onboardButton.onclick = async () => {
-                    const acc = await window.ethereum.request({
-                        method: "eth_requestAccounts",
-                    }).catch((err) => {
-                        if (err.code === 4001) {
-                            console.log('Please connect to MetaMask.');
-                        } else {
-                            console.error(err);
-                        }
-                    });
-                    if (acc && acc.length > 0) {
-                        onboardButton.innerText = "Connected";
-                        onboardButton.disabled = true;
-                    }
-                };
-            }
-        };
-        updateButton();
-        if (MetaMaskOnboarding.isMetaMaskInstalled()) {
-            window.ethereum.on('accountsChanged', (newAccounts) => {
-                accounts = newAccounts;
-                updateButton();
-            });
+window.addEventListener("DOMContentLoaded", () => {
+    const onboarding = new MetaMaskOnboarding();
+    const onboardButton = document.getElementById("onboardButton");
+    const showAccount = document.querySelector('.showAccount');
+    let accounts;
+
+    const setButtonState = (text, disabled, clickHandler) => {
+        onboardButton.innerText = text;
+        onboardButton.disabled = disabled;
+        onboardButton.onclick = clickHandler;
+    };
+
+    const handleInstallClick = () => {
+        setButtonState("Onboarding in progress", true, () => onboarding.startOnboarding());
+    };
+
+    const handleConnectClick = async () => {
+        try {
+        const acc = await window.ethereum.request({ method: "eth_requestAccounts" });
+        if (acc && acc.length > 0) {
+            setButtonState("Connected", true, null);
         }
-    });
+        } catch (err) {
+        if (err.code === 4001) {
+            console.log('Please connect to MetaMask.');
+        } else {
+            console.error(err);
+        }
+        }
+    };
+
+    const updateButton = async () => {
+        const metaMaskInstalled = MetaMaskOnboarding.isMetaMaskInstalled();
+        console.log(
+            `Accounts: ${accounts}`
+        )
+
+        console.log(
+            "eth ",
+            window.ethereum._state.accounts
+        )
+
+        const connected = accounts && accounts.length > 0;        
+
+        if (!metaMaskInstalled) {
+            setButtonState("Click here to install MetaMask!", false, handleInstallClick);
+            console.log("1")
+        } else if (connected) {
+            console.log("still connected")
+            console.log("2")
+            setButtonState("Connected", true, null);
+            showAccount.innerHTML = "";
+            onboarding.stopOnboarding();
+        } else {
+            console.log("3")
+            setButtonState("Connect", false, handleConnectClick);
+        }
+    };
+
+    const handleAccountsChanged = (newAccounts) => {
+        accounts = newAccounts;
+        updateButton();
+    };
+
+    const initialize = () => {
+        updateButton();
+
+        if (MetaMaskOnboarding.isMetaMaskInstalled()) {
+            window.ethereum.on('accountsChanged', handleAccountsChanged);
+        }
+    };
+
+    initialize();
+
+});
 </script>

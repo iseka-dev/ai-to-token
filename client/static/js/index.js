@@ -41,7 +41,7 @@ window.onload = () => {
                   console.log("Error on loading file", ev);
                 });
               }
-              loadJS("../static/js/mint-nft.js", true);
+              loadJS("../static/js/mint_nft.js", true);
         })
         .catch(error => console.error(error));
     });

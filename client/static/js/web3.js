@@ -10,6 +10,7 @@ const ethereumButton = document.querySelector('.enableEthereumButton');
 const showAccount = document.querySelector('.showAccount');
 
 ethereumButton.addEventListener('click', () => {
+  console.log("entering")
   void getAccount();
 });
 
@@ -54,7 +55,7 @@ function handleAccountsChanged(accounts) {
 /**********************************************************/
 /* Handle chain (network) and chainChanged (per EIP-1193) */
 /**********************************************************/
-
+/*
 const chainId = await window.ethereum.request({ method: 'eth_chainId' });
 
 console.log(chainId, "*********************")
@@ -64,3 +65,4 @@ window.ethereum.on('chainChanged', handleChainChanged);
 function handleChainChanged(chainId) {
   window.location.reload();
 }
+*/
