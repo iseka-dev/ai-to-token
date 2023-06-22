@@ -1,13 +1,8 @@
-from fastapi import APIRouter
-from fastapi import HTTPException
-from fastapi import Request
-from fastapi import status
+from fastapi import APIRouter, HTTPException, Request, status
 from fastapi.responses import HTMLResponse
-
 
 from src.core.logger import log
 from src.services.v1.images_service import ImageGeneratorService
-
 
 img_generation_routes = APIRouter(
     prefix="/v1/generate-img",

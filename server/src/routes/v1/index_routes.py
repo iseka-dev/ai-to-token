@@ -1,7 +1,4 @@
-from fastapi import APIRouter
-from fastapi import HTTPException
-from fastapi import Request
-from fastapi import status
+from fastapi import APIRouter, HTTPException, Request, status
 
 from src.core.logger import log
 from src.core.utils import templates

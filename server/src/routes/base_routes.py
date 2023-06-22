@@ -1,8 +1,7 @@
 from fastapi import APIRouter
 
-from src.routes.v1.index_routes import index_routes
 from src.routes.v1.img_generation_routes import img_generation_routes
-
+from src.routes.v1.index_routes import index_routes
 
 router = APIRouter()
 

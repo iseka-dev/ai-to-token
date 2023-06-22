@@ -1,5 +1,4 @@
 import requests
-
 from fastapi import Request
 
 from src.config import settings
