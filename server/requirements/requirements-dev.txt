@@ -8,6 +8,8 @@ exceptiongroup==1.1.1
 fastapi==0.95.2
 fastapi-vite==0.3.2
 h11==0.14.0
+httpcore==0.17.2
+httpx==0.24.1
 idna==3.4
 iniconfig==2.0.0
 Jinja2==3.1.2
