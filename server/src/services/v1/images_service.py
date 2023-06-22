@@ -12,18 +12,18 @@ from src.core.utils import templates
 class ImageGeneratorInterface(ABC):
 
     @abstractmethod
-    def generate_image(self):
+    def get_image(self):
         pass
 
 
-class ImageGeneratorService:
+class ImageGeneratorService(ImageGeneratorInterface):
     url_open_ai = "https://api.openai.com/v1/images/generations"
     headers = {
             "Content-Type": "application/json",
             "Authorization": f"Bearer {settings.OPENAI_API_KEY}"
     }
 
-    async def generate_image(
+    async def get_image(
         self, request: Request
     ):
         # Get the user's input
@@ -52,7 +52,7 @@ class ImageGeneratorService:
 
 
 class DallEImageGeneratorService(ImageGeneratorInterface):
-    def generate_image(self):
+    def get_image(self):
         """
         TODO
         """

@@ -16,11 +16,11 @@ img_generation_routes = APIRouter(
 
 
 @img_generation_routes.post("/", response_class=HTMLResponse)
-async def generate_image_openai(request: Request):
+async def get_image_from_openai(request: Request):
     try:
-        return await ImageGeneratorService().generate_image(request)
+        return await ImageGeneratorService().get_image(request)
     except Exception as e:
-        log.error(f"generate_openai_image-E01: {e}")
+        log.error(f"get_image_from_openai-E01: {e}")
         error = f"Error at img generation: {e}"
     raise HTTPException(
         status_code=status.HTTP_404_NOT_FOUND,
