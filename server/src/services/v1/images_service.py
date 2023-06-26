@@ -29,14 +29,10 @@ class ImageFromAIService:
             url=self.url_open_ai, headers=self.headers, json=data
         ).json()
         img_url = json_response['data'][0]['url']
-        a = templates.TemplateResponse(
+        return templates.TemplateResponse(
             "image.html",
             {
                 "request": request,
                 "img_url": img_url,
             }
         )
-        print(dir(a))
-        print(a.context)
-        print(a.template)
-        return a

@@ -18,6 +18,6 @@ async def generate_image_from_openai(request: Request):
         log.error(f"get_image_from_openai-E01: {e}")
         error = f"Error at img generation: {e}"
     raise HTTPException(
-        status_code=status.HTTP_404_NOT_FOUND,
+        status_code=status.HTTP_400_BAD_REQUEST,
         detail={"Error": error},
     )
