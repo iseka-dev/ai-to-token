@@ -10,3 +10,8 @@ client = TestClient(app)
 def client():
     client = TestClient(app)
     yield client
+
+
+@pytest.fixture()
+def json_header():
+    return {"Content-Type": "application/json"}

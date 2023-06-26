@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from src.routes.v1.img_generation_routes import img_generation_routes
+from src.routes.v1.img_from_ai_routes import generate_img_from_ai_routes
 from src.routes.v1.index_routes import index_routes
 
 router = APIRouter()
@@ -12,4 +12,4 @@ async def health_check():
 
 
 router.include_router(index_routes)
-router.include_router(img_generation_routes)
+router.include_router(generate_img_from_ai_routes)

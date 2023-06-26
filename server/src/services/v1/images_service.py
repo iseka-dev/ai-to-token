@@ -5,7 +5,7 @@ from src.config import settings
 from src.core.utils import templates
 
 
-class ImageGeneratorService:
+class ImageFromAIService:
     url_open_ai = "https://api.openai.com/v1/images/generations"
     headers = {
             "Content-Type": "application/json",
@@ -29,11 +29,14 @@ class ImageGeneratorService:
             url=self.url_open_ai, headers=self.headers, json=data
         ).json()
         img_url = json_response['data'][0]['url']
-
-        return templates.TemplateResponse(
+        a = templates.TemplateResponse(
             "image.html",
             {
                 "request": request,
                 "img_url": img_url,
             }
         )
+        print(dir(a))
+        print(a.context)
+        print(a.template)
+        return a
