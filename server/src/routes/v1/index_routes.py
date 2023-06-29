@@ -5,12 +5,12 @@ from src.core.utils import templates
 
 index_routes = APIRouter(
     prefix="",
-    tags=["aitonft"]
+    tags=["home"]
 )
 
 
 @index_routes.get("/")
-async def index_html(request: Request):
+async def get_index_html(request: Request):
     try:
         return templates.TemplateResponse("index.html", {"request": request})
     except Exception as e:
