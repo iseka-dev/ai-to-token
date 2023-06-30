@@ -7,6 +7,6 @@ class PromptRequest(BaseModel):
     class Config:
         schema_extra = {
             "example": {
-                "prompt": "a random prompt to be introduced in chat GPT-3",
+                "prompt": "Draw a lot of kitty kittens",
             }
         }

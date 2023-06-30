@@ -16,7 +16,7 @@ class ImageFromAIService:
     async def get_image(self, prompt_data: PromptRequest, request: Request):
         # Create data for openai requests
         data = {
-            "prompt": prompt_data.get("prompt"),
+            "prompt": prompt_data.get("prompt", "no_prompt"),
             "n": 1,
             "size": "256x256"
         }

@@ -26,18 +26,9 @@ async def test_get_image_from_ai_get_image_success(
 
 
 @pytest.mark.asyncio
-@patch("requests.post")
-async def test_get_image_from_ai_get_image_no_prompt_input(
-    mocked_post, prompt_payload
-):
-    mocked_post.return_value = Mock(
-        status_code=200, json=lambda: {
-            "data": [
-                {"url": "some_url"}
-            ]
-        }
-    )
-
-    response = await ImageFromAIService().get_image(prompt_payload, {})
+async def test_get_image_from_ai_get_image_no_prompt_input():
+    response = await ImageFromAIService().get_image({}, {})
 
     assert response.status_code == 400
+    assert "request" not in response.context
+    assert "img_url" not in response.context
