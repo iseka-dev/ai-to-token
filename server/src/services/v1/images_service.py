@@ -19,21 +19,24 @@ class ImageFromAIService:
     }
 
     async def generate_image(
-        self, prompt_data: PromptRequest, request: Request
+        self, data: PromptRequest, request: Request
     ) -> templates.TemplateResponse:
 
         # Create data for openai requests
         new_data = {
-            "prompt": prompt_data.prompt,
+            "prompt": data.prompt,
             "n": 10,
             "size": "256x256"
         }
 
-        # Send the request and handle the response
         log.info("Querying third party api...")
+
+        # Send the request and handle the response
         json_response = requests.post(
             url=self.url_open_ai, headers=self.headers, json=new_data
         ).json()
+
+        log.debug(json_response)
 
         try:
             img_url = json_response["data"][0]["url"]

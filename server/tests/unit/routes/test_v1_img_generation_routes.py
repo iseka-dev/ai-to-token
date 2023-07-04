@@ -2,6 +2,8 @@ from unittest.mock import patch
 
 from src.exceptions import OpenAIApiRateLimitExceeded
 
+exception_message = "This is an exception"
+
 
 @patch("src.services.v1.images_service.ImageFromAIService.generate_image")
 def test_generate_image_from_openai_success(
@@ -24,7 +26,6 @@ def test_generate_image_from_openai_success(
 def test_generate_image_from_openai_rate_limit_exception(
     mock_service, client, json_header, prompt_payload_dict
 ):
-    exception_message = "This is an exception"
     mock_service.side_effect = OpenAIApiRateLimitExceeded(exception_message)
     response = client.post(
         "/v1/generate-img-from-ai/",
@@ -40,10 +41,59 @@ def test_generate_image_from_openai_rate_limit_exception(
 
 
 @patch("src.services.v1.images_service.ImageFromAIService.generate_image")
+def test_generate_image_from_openai_missing_argument(
+    mock_service, client, json_header
+):
+    mock_service.side_effect = OpenAIApiRateLimitExceeded(exception_message)
+    response = client.post(
+        "/v1/generate-img-from-ai/",
+        headers=json_header,
+        json={}
+    )
+
+    assert response.status_code == 422
+    assert response.json() == {
+        "detail": [{
+            "loc": [
+                "body",
+                "prompt"
+            ],
+            "msg": "field required",
+            "type": "value_error.missing"
+        }]
+    }
+    assert response.is_error
+
+
+@patch("src.services.v1.images_service.ImageFromAIService.generate_image")
+def test_generate_image_from_openai_empty_argument(
+    mock_service, client, json_header
+):
+    mock_service.side_effect = OpenAIApiRateLimitExceeded(exception_message)
+    response = client.post(
+        "/v1/generate-img-from-ai/",
+        headers=json_header,
+        json={}
+    )
+
+    assert response.status_code == 422
+    assert response.json() == {
+        "detail": [{
+            "loc": [
+                "body",
+                "prompt"
+            ],
+            "msg": "field required",
+            "type": "value_error.missing"
+        }]
+    }
+    assert response.is_error
+
+
+@patch("src.services.v1.images_service.ImageFromAIService.generate_image")
 def test_generate_image_from_openai_exception(
     mock_service, client, json_header, prompt_payload_dict
 ):
-    exception_message = "This is an exception"
     mock_service.side_effect = Exception(exception_message)
     response = client.post(
         "/v1/generate-img-from-ai/",
