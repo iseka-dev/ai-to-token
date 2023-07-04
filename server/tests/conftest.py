@@ -3,6 +3,7 @@ from fastapi.testclient import TestClient
 
 from src.config import settings
 from src.main import app
+from src.schemas.v1.schemas import PromptRequest
 
 client = TestClient(app)
 
@@ -27,5 +28,12 @@ def openai_json_header():
 
 
 @pytest.fixture()
-def prompt_payload():
+def prompt_payload_dict():
     return {"prompt": "kitties for everyone"}
+
+
+@pytest.fixture()
+def prompt_payload_schema():
+    return PromptRequest(
+        prompt="kitties for everyone"
+    )

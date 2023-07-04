@@ -1,0 +1,2 @@
+class OpenAIApiRateLimitExceeded(Exception):
+    pass
