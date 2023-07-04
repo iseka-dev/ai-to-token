@@ -6,11 +6,11 @@ window.onload = () => {
 
     const url = "http://localhost:8000/v1/generate-img-from-ai/";
 
-    const data = { "input": document.getElementById("texto").value };
+    const data = { "prompt": document.getElementById("texto").value };
 
     const options = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Accept": "text/html", "Content-Type": "application/json" },
       body: JSON.stringify(data)
     };
 
