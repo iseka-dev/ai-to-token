@@ -36,3 +36,4 @@ jobs:
           python -m pytest --suppress-no-test-exit-code --cov=server --cov-report term-missing:skip-covered -v
         env:
           STATIC_FILES_DIRECTORY: ./client/static
+          TEMPLATES_DIRECTORY: ./client/templates
