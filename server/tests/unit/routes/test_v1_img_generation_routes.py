@@ -1,5 +1,6 @@
 from unittest.mock import patch
 
+from src.core.logger import log
 from src.exceptions import OpenAIApiRateLimitExceeded
 
 exception_message = "This is an exception"
@@ -73,19 +74,21 @@ def test_generate_image_from_openai_empty_argument(
     response = client.post(
         "/v1/generate-img-from-ai/",
         headers=json_header,
-        json={}
+        json={"prompt": ""}
     )
 
     assert response.status_code == 422
     assert response.json() == {
-        "detail": [{
-            "loc": [
-                "body",
-                "prompt"
-            ],
-            "msg": "field required",
-            "type": "value_error.missing"
-        }]
+        "detail": [
+            {
+                "loc": [
+                    "body",
+                    "prompt"
+                ],
+                "msg": "Try with a longer prompt",
+                "type": "value_error"
+            }
+        ]
     }
     assert response.is_error
 

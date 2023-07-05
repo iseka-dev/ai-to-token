@@ -31,7 +31,7 @@ async def test_generate_image_from_ai_generate_image_success(
 
 @pytest.mark.asyncio
 @patch("requests.post")
-async def test_generate_image_from_ai_rate_limit_exceeded_exception(
+async def test_generate_image_from_ai_rate_limit_exceeded(
     mocked_post, prompt_payload_schema
 ):
     exception_message = "This is an exception"
