@@ -26,11 +26,11 @@ async def generate_image_from_openai(data: PromptRequest, request: Request):
     try:
         return await ImageFromAIService().generate_image(data, request)
     except OpenAIApiRateLimitExceeded as e:
-        log.debug(f"generate_image_from_openai-E01: {e}")
+        log.error(f"generate_image_from_openai-E01: {e}")
         error = f"Error at image generation: {e}"
         code = status.HTTP_429_TOO_MANY_REQUESTS
     except Exception as e:
-        log.debug(f"generate_image_from_openai-E01: {e}")
+        log.error(f"generate_image_from_openai-E01: {e}")
         error = f"Error at image generation: {e}"
         code = status.HTTP_400_BAD_REQUEST
     raise HTTPException(

@@ -36,8 +36,6 @@ class ImageFromAIService:
             url=self.url_open_ai, headers=self.headers, json=new_data
         ).json()
 
-        log.debug(json_response)
-
         try:
             img_url = json_response["data"][0]["url"]
         except KeyError as e:
