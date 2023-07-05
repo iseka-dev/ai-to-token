@@ -23,7 +23,7 @@ def test_generate_image_from_openai_success(
 
 
 @patch("src.services.v1.images_service.ImageFromAIService.generate_image")
-def test_generate_image_from_openai_rate_limit_exception(
+def test_generate_image_from_openai_rate_limit(
     mock_service, client, json_header, prompt_payload_dict
 ):
     mock_service.side_effect = OpenAIApiRateLimitExceeded(exception_message)

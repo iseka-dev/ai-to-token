@@ -1,13 +1,14 @@
 import pytest
 from mock import Mock, patch
 
+from src.core.logger import log
 from src.exceptions import OpenAIApiRateLimitExceeded
 from src.services.v1.images_service import ImageFromAIService
 
 
 @pytest.mark.asyncio
 @patch("requests.post")
-async def test_get_image_from_ai_generate_image_success(
+async def test_generate_image_from_ai_generate_image_success(
     mocked_post, prompt_payload_schema
 ):
     mocked_post.return_value = Mock(
@@ -29,10 +30,15 @@ async def test_get_image_from_ai_generate_image_success(
 
 
 @pytest.mark.asyncio
-async def test_get_image_from_ai_rate_limit_exceeded_exception(
-    prompt_payload_schema
+@patch("requests.post")
+async def test_generate_image_from_ai_rate_limit_exceeded_exception(
+    mocked_post, prompt_payload_schema
 ):
+    exception_message = "This is an exception"
+    mocked_post.side_effect = OpenAIApiRateLimitExceeded(exception_message)
     with pytest.raises(OpenAIApiRateLimitExceeded) as e:
         await ImageFromAIService().generate_image(prompt_payload_schema, {})
 
-    assert str(e.value) == "OpenAI API rate limit exceeded"
+    log.debug(e)
+
+    assert str(e.value) == exception_message
