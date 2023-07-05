@@ -1,6 +1,5 @@
 from unittest.mock import patch
 
-from src.core.logger import log
 from src.exceptions import OpenAIApiRateLimitExceeded
 
 exception_message = "This is an exception"

@@ -1,7 +1,6 @@
 import pytest
 from mock import Mock, patch
 
-from src.core.logger import log
 from src.exceptions import OpenAIApiRateLimitExceeded
 from src.services.v1.images_service import ImageFromAIService
 
