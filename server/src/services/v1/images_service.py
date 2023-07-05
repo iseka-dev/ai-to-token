@@ -32,9 +32,11 @@ class ImageFromAIService:
         log.info("Querying third party api...")
 
         # Send the request and handle the response
-        json_response = requests.post(
+        response = requests.post(
             url=self.url_open_ai, headers=self.headers, json=new_data
-        ).json()
+        )
+
+        json_response = response.json()
 
         try:
             img_url = json_response["data"][0]["url"]
