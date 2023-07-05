@@ -11,6 +11,9 @@ class Settings(BaseSettings):
     STATIC_FILES_DIRECTORY = os.getenv(
         "STATIC_FILES_DIRECTORY", "./client/static"
     )
+    TEMPLATES_DIRECTORY = os.getenv(
+        "TEMPLATES_DIRECTORY", "./client/templates"
+    )
 
 
 settings = Settings()
