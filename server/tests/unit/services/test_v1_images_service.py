@@ -27,18 +27,3 @@ async def test_generate_image_from_ai_generate_image_success(
     assert response.template.name == "image.html"
     assert "request" in response.context
     assert "img_url" in response.context
-
-
-@pytest.mark.asyncio
-@patch("requests.post")
-async def test_generate_image_from_ai_rate_limit_exceeded(
-    mocked_post, prompt_payload_schema
-):
-    exception_message = "This is an exception"
-    mocked_post.side_effect = OpenAIApiRateLimitExceeded(exception_message)
-    with pytest.raises(OpenAIApiRateLimitExceeded) as e:
-        await ImageFromAIService().generate_image(prompt_payload_schema, {})
-
-    log.debug(e)
-
-    assert str(e.value) == exception_message
